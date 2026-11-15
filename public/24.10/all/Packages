@@ -10,12 +10,11 @@ URL: https://github.com/openwrt/luci
 Maintainer: OpenWrt LuCI community
 Architecture: all
 Installed-Size: 1484800
-Description:  LuCI support for Nikki+
-
 Filename: luci-app-nikkiplus_0.1.0-r1_all.ipk
 Size: 860319
 SHA256sum: 2d0a276d0b2bd8b5c3b1abec24c0169ef017322dad35a46e0aeb38a9f301854d
 MD5Sum: b74972d4e3d4b03b4056cdf0eef165cb
+Description:  LuCI support for Nikki+
 
 Package: luci-i18n-nikkiplus-zh-cn
 Version: 0.261115.35320
@@ -27,10 +26,9 @@ Section: luci
 SourceDateEpoch: 1784877710
 Architecture: all
 Installed-Size: 40960
-Description:  Translation for luci-app-nikkiplus - 简体中文 (Simplified Chinese)
-
 Filename: luci-i18n-nikkiplus-zh-cn_0.261115.35320_all.ipk
 Size: 13262
 SHA256sum: 585a45f1ae726cef88cdf7d1356961e255127a450701c8e6e245079cd1be762a
 MD5Sum: e23c4a93881e749dc9dc12db4e1b6a9b
+Description:  Translation for luci-app-nikkiplus - 简体中文 (Simplified Chinese)
 
