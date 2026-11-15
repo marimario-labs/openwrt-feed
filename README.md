@@ -16,8 +16,8 @@ The test key `ed08b382f5d92ab5` in the git history was temporary. Do not trust i
 
 Published once here; projects link to this file.
 
-- usign key id: `{{PENDING}}` (`usign -F -p marimario.pub`)
-- apk pubkey sha256 (DER): `{{PENDING}}` (`openssl pkey -pubin -in marimario.pem -outform DER | sha256sum`)
+- usign key id: `2585f7390c35c194` (`usign -F -p marimario.pub`)
+- apk pubkey sha256 (DER): `6c689dc46b64a6ff1b45d10c8f1acdc691d802fa29b75f7b3945bf7543ac444d` (`openssl pkey -pubin -in marimario.pem -outform DER | sha256sum`)
 
 ## Publishing
 

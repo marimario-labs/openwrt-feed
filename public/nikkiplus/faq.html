@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nikki+ 常见问题（FAQ）与已知限制</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #24292f;
+      --heading: #1f2328;
+      --border: #d0d7de;
+      --link: #0969da;
+      --card-bg: #f6f8fa;
+      --code-bg: #eff1f3;
+      --code-text: #24292f;
+      --callout-info-bg: #ddf4ff;
+      --callout-info-border: #54aeff;
+      --callout-warn-bg: #fff8c5;
+      --callout-warn-border: #d4a72c;
+      --callout-danger-bg: #ffebe9;
+      --callout-danger-border: #ff8182;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --text: #e6edf3;
+        --heading: #f0f6fc;
+        --border: #30363d;
+        --link: #4493f8;
+        --card-bg: #161b22;
+        --code-bg: #1f242c;
+        --code-text: #e6edf3;
+        --callout-info-bg: #042642;
+        --callout-info-border: #1f6feb;
+        --callout-warn-bg: #342b00;
+        --callout-warn-border: #9e6a03;
+        --callout-danger-bg: #3c1418;
+        --callout-danger-border: #f85149;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 2rem 1.25rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background-color: var(--bg);
+    }
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 1.85rem;
+      color: var(--heading);
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text);
+      opacity: 0.85;
+      margin: 0;
+    }
+    nav.toc {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    nav.toc h2 {
+      font-size: 1.15rem;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      color: var(--heading);
+    }
+    nav.toc ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    nav.toc li {
+      margin-bottom: 0.35rem;
+    }
+    nav.toc a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    nav.toc a:hover {
+      text-decoration: underline;
+    }
+    section.category {
+      margin-bottom: 3rem;
+    }
+    h2.category-title {
+      font-size: 1.45rem;
+      color: var(--heading);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+      margin-top: 2rem;
+      margin-bottom: 1.25rem;
+    }
+    article.faq-item {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    article.faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    h3.question {
+      font-size: 1.15rem;
+      color: var(--heading);
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: baseline;
+    }
+    h3.question a.anchor {
+      color: inherit;
+      text-decoration: none;
+    }
+    h3.question a.anchor:hover {
+      text-decoration: underline;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 0.85rem;
+    }
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 0.85rem;
+      padding-left: 1.4rem;
+    }
+    li {
+      margin-bottom: 0.35rem;
+    }
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.88em;
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      padding: 0.15em 0.35em;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      overflow-x: auto;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    pre code {
+      padding: 0;
+      background-color: transparent;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .callout {
+      border-left: 4px solid;
+      border-radius: 0 6px 6px 0;
+      padding: 0.85rem 1rem;
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+    .callout.info {
+      background-color: var(--callout-info-bg);
+      border-left-color: var(--callout-info-border);
+    }
+    .callout.warning {
+      background-color: var(--callout-warn-bg);
+      border-left-color: var(--callout-warn-border);
+    }
+    .callout.danger {
+      background-color: var(--callout-danger-bg);
+      border-left-color: var(--callout-danger-border);
+    }
+    .callout-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: var(--card-bg);
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text);
+      opacity: 0.75;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Nikki+ 常见问题（FAQ）与已知限制</h1>
+      <p class="subtitle">运行于 OpenWrt / ImmortalWrt（24.10、25.12）的 luci-app-nikkiplus 用户手册与故障排查指引。</p>
+    </header>
+
+    <nav class="toc" id="faq-toc">
+      <h2>目录</h2>
+      <ul>
+        <li>
+          <a href="#cat-install">一、安装、升级与硬件要求</a>
+          <ul>
+            <li><a href="#hardware-flash-storage">1.1 路由器的硬件配置有什么要求？为什么建议至少 128 MB 闪存？</a></li>
+            <li><a href="#install-upgrade-and-signature">1.2 为什么要在 nikki 正在运行的状态下安装或升级 Nikki+？</a></li>
+            <li><a href="#signature-verification-retry">1.3 升级或安装时提示签名校验失败（UNTRUSTED signature）如何处理？</a></li>
+            <li><a href="#sysupgrade-recovery-and-profile">1.4 固件升级（sysupgrade）后如何恢复 Nikki+？</a></li>
+            <li><a href="#builtin-profile-overwrite">1.5 为什么在编辑器中直接修改内置 profile 会在生成配置或升级时丢失？</a></li>
+            <li><a href="#feed-removal">1.6 卸载 Nikki+ 后为什么没有删除软件包仓库（feed）和公钥？如何手动删除？</a></li>
+            <li><a href="#dnsmasq-full-retained">1.7 卸载 Nikki+ 后为什么没有将 dnsmasq-full 换回原有的 dnsmasq？</a></li>
+            <li><a href="#prohibit-force-reinstall">1.8 为什么在 24.10 (opkg) 下绝对不能执行 opkg install --force-reinstall？</a></li>
+            <li><a href="#prohibit-nikki-uninstall-script">1.9 为什么不能在安装了 Nikki+ 的情况下运行 nikki 的 uninstall.sh？</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#cat-feed-version">二、软件包仓库与版本管理</a>
+          <ul>
+            <li><a href="#apk-upgrade-stale">2.1 25.12 (apk) 下在 LuCI“升级…”报 stale/unavailable repositories（退出码 99）如何处理？</a></li>
+            <li><a href="#opkg-update-download-failed">2.2 点击“更新列表…”报 nikkinikki.pages.dev 下载失败（退出码 1）如何处理？</a></li>
+            <li><a href="#version-warning">2.3 概览页提示“已安装版本比 Nikki+ 测试过的版本新”或“alpha 内核未经测试”是什么意思？</a></li>
+            <li><a href="#version-downgrade-lock">2.4 nikki 升级后出现故障，如何降级并锁定版本？</a></li>
+            <li><a href="#opkg-nikki-upgrade-killswitch">2.5 在 24.10 (opkg) 下升级 nikki 时，为什么境外流量会暂时中断？</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#cat-runtime-limitations">三、运行与配置限制</a>
+          <ul>
+            <li><a href="#mixin-file-content-requirement">3.1 为什么在 nikki 中关闭“混入文件内容”（mixin_file_content）会导致 nikki 无法启动？</a></li>
+            <li><a href="#custom-profile-pause">3.2 在 luci-app-nikki 中切换为其它 profile 会怎样？如何恢复？</a></li>
+            <li><a href="#device-binding-limitations">3.3 设备绑定的分流行为与注意事项有哪些？</a></li>
+            <li><a href="#landing-proxies-empty">3.4 为什么只有订阅没有手动落地节点时，部分服务组与规则默认拒绝连接？</a></li>
+            <li><a href="#api-secret-replacement">3.5 为什么自设的 6 位数字 API 密钥会被替换？</a></li>
+            <li><a href="#subscription-unsupported-proxy">3.6 订阅中只要有一个节点格式不支持，为什么会导致整个订阅失效？</a></li>
+            <li><a href="#author-homelab-rules">3.7 为什么公开软件包中包含部分维护者的直连域名与策略组名？</a></li>
+            <li><a href="#uninstall-retained-configs">3.8 卸载 Nikki+ 后，系统还保留了哪些设置？</a></li>
+            <li><a href="#feed-probe-limitations">3.9 概览页软件包仓库可达性探测有哪些已知局限？</a></li>
+            <li><a href="#subscription-profile-bad-dns">3.10 只用 nikki 加载订阅返回的完整 profile 时，为什么代理会间歇性全断？</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#cat-killswitch-diagnostics">四、kill switch 与网络诊断</a>
+          <ul>
+            <li><a href="#kill-switch-details">4.1 kill switch 的放行规则与边界细节有哪些？</a></li>
+            <li><a href="#foreign-ping-rejected">4.2 为什么局域网设备无法 ping 通 8.8.8.8 等境外 IP？</a></li>
+            <li><a href="#github-diagnostic-export">4.3 无法打开 GitHub 时，如何导出并提交诊断信息？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 一、安装、升级与硬件要求 -->
+    <section class="category" id="cat-install">
+      <h2 class="category-title">一、安装、升级与硬件要求</h2>
+
+      <article class="faq-item" id="hardware-flash-storage">
+        <h3 class="question"><a class="anchor" href="#hardware-flash-storage">1.1 路由器的硬件配置有什么要求？为什么建议至少 128 MB 闪存？</a></h3>
+        <p>Nikki+ 建议设备具备<strong>至少 128 MB 闪存（Flash）</strong>与<strong>至少 256 MB 内存（RAM）</strong>。</p>
+        <p>原因如下：</p>
+        <ul>
+          <li>mihomo 内核二进制体积较大（约 20–30 MB），加上 <code>yq</code>、各类规则集合（<code>.mrs</code> 与 <code>.list</code> 文件约数百 KB 到数 MB）以及依赖包，在安装与解压时需要占用较多 <code>/overlay</code> 分区空间。</li>
+          <li>软件包在下载安装过程中会先暂存到基于内存的 <code>/tmp</code> 目录，安装过程需要足够的空闲内存。</li>
+          <li>常见的 16 MB 或 32 MB NOR 闪存路由器无法满足空间要求，强行安装会导致闪存空间写满，影响系统正常运行。</li>
+        </ul>
+        <p>安装脚本在执行前会读取索引中相关软件包的大小，检查 <code>/overlay</code> 与 <code>/tmp</code> 的剩余可用空间。若空间不足，安装脚本会输出“设备闪存太小，无法安装”并直接停止，不会对系统文件进行任何修改。</p>
+        <div class="callout info">
+          <div class="callout-title">内存说明</div>
+          <p>若设备物理内存小于 256 MB，向导的环境检查中会给出建议处理的 warning 提示，但不会阻止您点击“保存并应用”。您可以根据自身实际使用负载决定是否继续。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="install-upgrade-and-signature">
+        <h3 class="question"><a class="anchor" href="#install-upgrade-and-signature">1.2 为什么要在 nikki 正在运行的状态下安装或升级 Nikki+？</a></h3>
+        <p>Nikki+ 自身的软件包源托管在 Cloudflare Pages 平台（域名为 <code>feed.openwrt.marimario.me</code>）。在中国大陆的部分宽带运营商网络（尤其是中国移动网络）环境下，直接连接该域名可能存在不稳定或受限的情况。</p>
+        <p>因此，安装与升级 Nikki+ 时，请<strong>确保路由器上已有能正常上网的 nikki 正在运行</strong>，并且已开启“路由器代理”（对应 UCI 选项 <code>nikki.proxy.router_proxy='1'</code>）。这样路由器本机的下载请求会通过代理分流转发，保证软件包和公钥顺利下载。</p>
+      </article>
+
+      <article class="faq-item" id="signature-verification-retry">
+        <h3 class="question"><a class="anchor" href="#signature-verification-retry">1.3 升级或安装时提示签名校验失败（UNTRUSTED signature）如何处理？</a></h3>
+        <p>当维护者向共享源发布新版本并部署到 Cloudflare Pages 时，在部署切换的短暂瞬间，客户端发起更新请求可能刚好抓取到新生成的软件包列表而对应旧的签名文件，或者反之。</p>
+        <p>此时 <code>opkg</code> 或 <code>apk</code> 可能会报错提示签名错误（如 <code>UNTRUSTED signature</code> 或 <code>Signature check failed</code>）。</p>
+        <div class="callout info">
+          <div class="callout-title">解决方法</div>
+          <p>这属于边缘节点部署缓存交替阶段的短暂现象。<strong>请稍等 2–5 分钟后，重新执行更新列表与安装命令即可</strong>。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="sysupgrade-recovery-and-profile">
+        <h3 class="question"><a class="anchor" href="#sysupgrade-recovery-and-profile">1.4 固件升级（sysupgrade）后如何恢复 Nikki+？</a></h3>
+        <p>执行 OpenWrt 固件升级（sysupgrade）后，安装在系统中的软件包会被全部清理，但只要保留了配置：</p>
+        <ul>
+          <li><code>/etc/config/nikkiplus</code> 配置文件（包含您的节点、订阅、设备绑定及修改记录）会作为 conffile 被系统完整保留；</li>
+          <li><code>/etc/nikkiplus/</code> 目录下的运行数据通过保留列表同样得以保存。</li>
+        </ul>
+        <p>因为刚升级后的路由器尚未配置代理，而国内直接访问 nikki 官方源通常不可达，恢复步骤如下：</p>
+        <ol>
+          <li><strong>重装 nikki</strong>：请先按照您原有的方式（例如通过本地保存的安装包或离线备份）重新安装并启动 <code>nikki</code>，恢复路由器的代理网络连接；</li>
+          <li><strong>重装 Nikki+</strong>：在网络恢复后，重新在终端粘贴执行 Nikki+ 的一行安装脚本；</li>
+          <li><strong>自动恢复</strong>：安装脚本执行完毕后，Nikki+ 的初始化脚本检测到系统中已存在的 <code>nikkiplus</code> 配置，会自动重新生成 <code>mixin.yaml</code>、内置 profile、sysctl 参数及 kill switch 防火墙规则。<strong>无需重新运行首次向导</strong>。</li>
+        </ol>
+        <div class="callout info">
+          <div class="callout-title">提示</div>
+          <p>加载 kill switch 的防火墙 include 文件随软件包安装，固件升级后重装 nikki 期间 kill switch 并未加载，不会阻断您重新下载和安装 nikki 所需的网络流量。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="builtin-profile-overwrite">
+        <h3 class="question"><a class="anchor" href="#builtin-profile-overwrite">1.5 为什么在编辑器中直接修改内置 profile 会在生成配置或升级时丢失？</a></h3>
+        <p>内置 profile 的母本存放在 <code>/usr/share/nikkiplus/</code> 下，并在启用时复制到 <code>/etc/nikki/profiles/</code> 中供 nikki 读取。</p>
+        <p>为了保证策略组、规则集与分流逻辑始终与生产基线严格一致，当 <code>nikkiplus.system.enabled='1'</code> 时，每次执行配置生成以及软件包升级，Nikki+ 都会将 <code>/etc/nikki/profiles/</code> 下的副本与安装包内的标准文件进行对比。一旦检测到内容不同或文件缺失，会<strong>立即使用标准母本覆盖副本</strong>。</p>
+        <div class="callout warning">
+          <div class="callout-title">重要提示</div>
+          <p>请勿在 luci-app-nikki 的配置文件编辑器中直接编辑内置 profile，您的修改在下一次配置变更或插件升级时会被全部覆盖并丢失。</p>
+          <p>如果您需要补充自定义的分流规则或策略组，请在 <code>/etc/nikki/mixin.yaml</code> 中添加（写在非 nikkiplus 管理的区域），nikki 会自动将它们与内置 profile 合并。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="feed-removal">
+        <h3 class="question"><a class="anchor" href="#feed-removal">1.6 卸载 Nikki+ 后为什么没有删除软件包仓库（feed）和公钥？如何手动删除？</a></h3>
+        <p>Nikki+ 的软件包仓库（feed）和签名公钥是由维护者的多个 OpenWrt 项目共享的。为了避免影响设备上可能已经安装或后续需要安装的其它同类组件，卸载脚本不会自动删除 feed 文件与公钥。</p>
+        <p>若您确定不再使用该源，可通过终端执行以下命令手动清除：</p>
+        <ul>
+          <li><strong>ImmortalWrt 25.12 (apk)</strong>：
+            <pre><code>rm -f /etc/apk/repositories.d/marimario.list /etc/apk/keys/marimario.pem</code></pre>
+          </li>
+          <li><strong>OpenWrt 24.10 (opkg)</strong>：
+            <pre><code>rm -f /etc/opkg/marimario.conf
+# 如需删除公钥，确认 key-id 后从 /etc/opkg/keys/ 中删除对应文件（key-id 可在 openwrt-feed 仓库 README 中确认，或执行 opkg-key list 查看）：
+rm -f /etc/opkg/keys/&lt;key-id&gt;</code></pre>
+          </li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="dnsmasq-full-retained">
+        <h3 class="question"><a class="anchor" href="#dnsmasq-full-retained">1.7 卸载 Nikki+ 后为什么没有将 dnsmasq-full 换回原有的 dnsmasq？</a></h3>
+        <p>在安装 Nikki+ 或首次向导中，如果检测到系统原装的 <code>dnsmasq</code> 编译选项不含 <code>nftset</code>，安装程序会将它替换为 <code>dnsmasq-full</code>。</p>
+        <p>卸载 Nikki+ 时，不会将 <code>dnsmasq-full</code> 自动换回 <code>dnsmasq</code>。因为：</p>
+        <ul>
+          <li><code>dnsmasq-full</code> 包含了 <code>dnsmasq</code> 的全部能力并完全向下兼容，保留它对系统正常运行无任何负面影响；</li>
+          <li>反向替换软件包需要先下载旧包、移除现有服务再重新配置，过程存在断网或 DNS 服务丢失的风险。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="prohibit-force-reinstall">
+        <h3 class="question"><a class="anchor" href="#prohibit-force-reinstall">1.8 为什么在 24.10 (opkg) 下绝对不能执行 opkg install --force-reinstall？</a></h3>
+        <p>在 OpenWrt 24.10 的 <code>opkg</code> 包管理器实现中，执行 <code>opkg install --force-reinstall</code> 时，opkg 内部的控制逻辑与执行卸载完全相同：它会先调用旧包的 <code>prerm</code> 脚本。</p>
+        <p>这会导致：</p>
+        <ul>
+          <li>Nikki+ 的卸载逻辑被触发；</li>
+          <li>已经记录的修改记录被还原或清理；</li>
+          <li>所有生成的内容（内置 profile 副本、<code>mixin.yaml</code> 条目等）被删除；</li>
+          <li>重新安装完成后，插件回到未启用状态，必须重新运行向导。</li>
+        </ul>
+        <div class="callout danger">
+          <div class="callout-title">禁止操作</div>
+          <p>切勿对 <code>luci-app-nikkiplus</code> 执行带 <code>--force-reinstall</code> 参数的安装命令。如需重新安装或修复，只需执行普通的 <code>opkg install</code> 或 <code>opkg upgrade</code> 即可。（注：25.12 的 apk 不受此问题影响）。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="prohibit-nikki-uninstall-script">
+        <h3 class="question"><a class="anchor" href="#prohibit-nikki-uninstall-script">1.9 为什么不能在安装了 Nikki+ 的情况下运行 nikki 的 uninstall.sh？</a></h3>
+        <p>nikki 官方项目自带的 <code>uninstall.sh</code> 脚本在卸载时会无条件执行 <code>rm -rf /etc/nikki</code>。</p>
+        <p>由于 Nikki+ 的内置 profile 副本位于 <code>/etc/nikki/profiles/</code>，且生成的配置条目写在 <code>/etc/nikki/mixin.yaml</code> 中，运行该脚本会直接强行删除这些关键文件，造成配置丢失与运行异常。若需卸载软件，请通过 LuCI 软件包页面常规卸载。</p>
+      </article>
+    </section>
+
+    <!-- 二、软件包仓库与版本管理 -->
+    <section class="category" id="cat-feed-version">
+      <h2 class="category-title">二、软件包仓库与版本管理</h2>
+
+      <article class="faq-item" id="apk-upgrade-stale">
+        <h3 class="question"><a class="anchor" href="#apk-upgrade-stale">2.1 25.12 (apk) 下在 LuCI“升级…”报 stale/unavailable repositories（退出码 99）如何处理？</a></h3>
+        <p>在 ImmortalWrt 25.12 中，通过 LuCI 软件包页面点击“升级…”或在终端运行 <code>apk upgrade</code> 时，若报错：</p>
+        <pre><code>Not continuing due to stale/unavailable repositories</code></pre>
+        <p><strong>原因</strong>：nikki 官方源位于 <code>nikkinikki.pages.dev</code>，由于国内网络直接连接该地址常被阻断，当路由器上的 apk 本地索引缓存不存在（如路由器刚重启）或缓存时间已超过 4 小时失效时，apk 尝试刷新该源失败，判定该软件包仓库为不可达或过期（stale/unavailable）。apk 的安全机制要求执行全局升级时所有配置的源都必须可用，因此整体拒绝执行并以 99 退出。</p>
+        <p><strong>解决方法</strong>：</p>
+        <ul>
+          <li><strong>方法一（推荐）</strong>：确保 nikki 正在运行，在 nikki 界面中选择一个可用的境外节点；在“代理配置”标签页与“路由器代理”标签页都确认勾选了“启用”。等待概览页的软件包仓库不可达警告消失后，先在 LuCI 点击“更新列表…”，再点击“升级…”。</li>
+          <li><strong>方法二（直接升级指定包）</strong>：如果您只想升级 Nikki+，可以通过 SSH 在终端直接指定包名升级：
+            <pre><code>apk add -u luci-app-nikkiplus luci-i18n-nikkiplus-zh-cn</code></pre>
+            <code>apk add -u</code> 在处理单个软件包的升级时，不受其它不可达源的限制，可以成功完成升级。
+          </li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="opkg-update-download-failed">
+        <h3 class="question"><a class="anchor" href="#opkg-update-download-failed">2.2 点击“更新列表…”报 nikkinikki.pages.dev 下载失败（退出码 1）如何处理？</a></h3>
+        <p>在 OpenWrt 24.10 或 ImmortalWrt 25.12 中，点击“更新列表…”或执行 <code>opkg update</code> / <code>apk update</code> 时，终端输出可能包含类似以下错误并以 1 退出：</p>
+        <pre><code>Failed to send request: Operation not permitted
+Failed to download https://nikkinikki.pages.dev/.../Packages.sig</code></pre>
+        <p><strong>说明</strong>：这仅表明官方 nikki 源由于国内网络直连受阻而暂时连接失败。在此期间，其它官方源以及 Nikki+ 的共享源都已经正常更新完毕，不影响安装或升级其它源中的软件包。如果您不需要在此刻升级 nikki 本身，此报错完全可以忽略。若需要更新 nikki，请先确保路由器代理已连通。</p>
+      </article>
+
+      <article class="faq-item" id="version-warning">
+        <h3 class="question"><a class="anchor" href="#version-warning">2.3 概览页提示“已安装版本比 Nikki+ 测试过的版本新”或“alpha 内核未经测试”是什么意思？</a></h3>
+        <p>每个 Nikki+ 发布版本都在包内记录了该版本经过严格兼容性测试的 <code>nikki</code>、<code>luci-app-nikki</code> 与 <code>mihomo-meta</code> 版本。</p>
+        <p>当您从官方源升级了 nikki，导致安装的版本高于记录的版本时，概览页顶部会显示一条 info 级别的提示（例如：“nikki 1.27.0 比 Nikki+ 测试过的 1.26.2 新。如遇问题请查看 FAQ”）。若您安装的是 <code>mihomo-alpha</code> 内核且当前包中未做测试记录，会提示“alpha 内核未经测试”。</p>
+        <div class="callout info">
+          <div class="callout-title">提示说明</div>
+          <p>该提示仅作为参考信息展示，<strong>不会影响向导运行、配置生成或日常网络代理</strong>。如果您日常使用完全正常，无需理会该提示。只有当升级新版后出现异常时，才需要考虑按下方说明降级。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="version-downgrade-lock">
+        <h3 class="question"><a class="anchor" href="#version-downgrade-lock">2.4 nikki 升级后出现故障，如何降级并锁定版本？</a></h3>
+        <div class="callout warning">
+          <div class="callout-title">降级原则</div>
+          <p><strong>只降级 <code>nikki</code>、<code>luci-app-nikki</code> 与 <code>luci-i18n-nikki-*</code> 三类包，切勿降级 mihomo 内核包！</strong></p>
+          <p>原因：旧版安装包中的 mihomo 版本往往低于 Nikki+ 的版本下限（<code>mihomo-meta >= 1.19.28</code> 或 <code>mihomo-alpha >= 2026.07.08</code>），降级内核会导致策略组无法加载；而降级 nikki 前端和守护进程并不要求降级内核。</p>
+        </div>
+        <p>官方源只保留最新版本，旧版本安装包可从官方 GitHub Release 获取：</p>
+        <ol>
+          <li>在电脑上打开 <code>https://github.com/nikkinikki-org/OpenWrt-nikki/releases</code>；</li>
+          <li>找到目标版本的 tag，下载对应路由器架构和版本的归档文件（例如 <code>nikki_x86_64-openwrt-25.12.tar.gz</code> 或 <code>24.10.tar.gz</code>）；</li>
+          <li>解压该文件，提取出其中的 <code>nikki</code>、<code>luci-app-nikki</code> 和 <code>luci-i18n-nikki-zh-cn</code> 三个包文件。</li>
+        </ol>
+
+        <h4>在 ImmortalWrt 25.12 (apk) 下操作</h4>
+        <p>由于单个 <code>.apk</code> 文件没有独立数字签名，LuCI 软件包页面的“上传软件包”会报错 <code>UNTRUSTED signature</code>，无法用于降级。必须通过命令行操作：</p>
+        <ol>
+          <li>将解压出的整个目录（包含 <code>packages.adb</code> 签名索引文件及各个 <code>.apk</code>）上传到路由器（例如 <code>/tmp/nikki-pkg/</code>）；</li>
+          <li>通过 SSH 执行以下命令完成降级：
+            <pre><code>apk add --repository /tmp/nikki-pkg/packages.adb "nikki=2026.04.08-r1" "luci-app-nikki=1.26.1-r1" "luci-i18n-nikki-zh-cn=1.26.1-r1"</code></pre>
+            <em>（请将上述命令中的版本号替换为您解压出的实际版本号）</em>
+          </li>
+          <li><strong>自动锁定</strong>：该命令利用原有的签名索引通过校验降级，执行后版本约束会被自动写入 <code>/etc/apk/world</code> 文件，后续执行 <code>apk upgrade</code> 不会再自动升回新版。</li>
+          <li><strong>解除锁定</strong>：若将来需要恢复升级，只需在终端执行不带版本约束的安装命令：
+            <pre><code>apk add nikki luci-app-nikki luci-i18n-nikki-zh-cn</code></pre>
+          </li>
+        </ol>
+
+        <h4>在 OpenWrt 24.10 (opkg) 下操作</h4>
+        <p><strong>通过 SSH 命令行（推荐）</strong>：</p>
+        <ol>
+          <li>将 3 个 <code>.ipk</code> 文件上传到路由器 <code>/tmp/</code> 目录；</li>
+          <li>强制降级：
+            <pre><code>opkg install --force-downgrade /tmp/nikki_*.ipk /tmp/luci-app-nikki_*.ipk /tmp/luci-i18n-nikki-zh-cn_*.ipk</code></pre>
+          </li>
+          <li>锁定版本（防止随日常升级被升回去）：
+            <pre><code>opkg flag hold nikki luci-app-nikki luci-i18n-nikki-zh-cn</code></pre>
+          </li>
+          <li>解除锁定：
+            <pre><code>opkg flag ok nikki luci-app-nikki luci-i18n-nikki-zh-cn</code></pre>
+          </li>
+        </ol>
+        <p><strong>通过 LuCI 网页界面（不会使用 SSH 的用户）</strong>：</p>
+        <p>直接通过 LuCI 上传旧版本安装包会被 opkg 判定为不可降级而静默跳过。可行的路径如下：</p>
+        <ol>
+          <li>进入 LuCI → 系统 → 软件包；</li>
+          <li>在“已安装”列表中找到 <code>nikki</code>，点击卸载（<strong>勾选“同时移除依赖它的软件包”</strong>，系统会自动连带卸载 <code>luci-app-nikki</code> 与语言包；原有的 <code>/etc/config/nikki</code> 会作为修改过的配置文件安全保留）；</li>
+          <li>进入“上传软件包”标签页，依次上传并安装旧版本的 <code>nikki_*.ipk</code>、<code>luci-app-nikki_*.ipk</code>、<code>luci-i18n-nikki-zh-cn_*.ipk</code>，每次一个。</li>
+        </ol>
+      </article>
+
+      <article class="faq-item" id="opkg-nikki-upgrade-killswitch">
+        <h3 class="question"><a class="anchor" href="#opkg-nikki-upgrade-killswitch">2.5 在 24.10 (opkg) 下升级 nikki 时，为什么境外流量会暂时中断？</a></h3>
+        <p>在 OpenWrt 24.10 环境下执行 <code>opkg upgrade nikki</code> 时，opkg 会首先执行旧包的 <code>prerm</code> 脚本停止正在运行的 nikki 进程。</p>
+        <p>当 nikki 停止服务后，Nikki+ 的 kill switch 机制会立刻发挥作用：<strong>为了防止设备上的程序在没有代理保护的情况下直接暴露直连时的出口 IP，kill switch 会立即阻断所有发往境外的转发流量</strong>。</p>
+        <p>在升级过程的数秒内：</p>
+        <ul>
+          <li>局域网通信、国内网站及各类直连服务完全正常工作；</li>
+          <li>境外网站会短暂无法访问；</li>
+          <li>待新版本安装完成且 nikki 重新启动后，境外流量会自动恢复正常。</li>
+        </ul>
+        <p>这是符合安全预期的保护行为。</p>
+      </article>
+    </section>
+
+    <!-- 三、运行与配置限制 -->
+    <section class="category" id="cat-runtime-limitations">
+      <h2 class="category-title">三、运行与配置限制</h2>
+
+      <article class="faq-item" id="mixin-file-content-requirement">
+        <h3 class="question"><a class="anchor" href="#mixin-file-content-requirement">3.1 为什么在 nikki 中关闭“混入文件内容”（mixin_file_content）会导致 nikki 无法启动？</a></h3>
+        <p>在 luci-app-nikki 的“混入设置”中，包含一个名为<strong>“混入文件内容”</strong>的开关（对应 UCI 选项 <code>nikki.mixin.mixin_file_content</code>）。</p>
+        <p><strong>原理与原因</strong>：Nikki+ 采用无侵入式的架构设计，内置 profile 不直接包含具体节点，它定义了包括 <code>GLOBAL</code>、<code>🐟 漏网之鱼</code>、7 个服务组以及直连/落地规则在内的完整分流策略。这些策略深度引用了 <code>🛫 中转节点</code> 与 <code>🛬 落地节点</code> 两个核心策略组。这两个核心策略组正是通过 <code>/etc/nikki/mixin.yaml</code> 注入到 nikki 中的。如果您在 nikki 中关闭了“混入文件内容”，nikki 启动合并配置时将不会读取 <code>mixin.yaml</code>，导致配置中缺失关键策略组，mihomo 配置校验失败，nikki 整体无法启动。</p>
+        <div class="callout danger">
+          <div class="callout-title">偏离告警</div>
+          <p>若误关闭该选项，Nikki+ 概览页会弹出不能被“不再提示”忽略的红色 danger 级别横幅。请务必在 luci-app-nikki 的“混入设置”中重新勾选“混入文件内容”，或在概览页点击“重新优化”。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="custom-profile-pause">
+        <h3 class="question"><a class="anchor" href="#custom-profile-pause">3.2 在 luci-app-nikki 中切换为其它 profile 会怎样？如何恢复？</a></h3>
+        <p>如果您在 luci-app-nikki 中将配置文件（profile）修改为指向非 Nikki+ 内置 profile 的其它文件或订阅链接：</p>
+        <ul>
+          <li><strong>Nikki+ 自动暂停</strong>：Nikki+ 会立即停止生成任何配置条目，原先在 <code>mixin.yaml</code> 中由 Nikki+ 写入的内容会被清除，kill switch 防火墙规则集会被撤销，设备绑定全部失效。</li>
+          <li><strong>nikki 独立运行</strong>：nikki 会完全按照您所选 profile 自身的规则独立运行。这是为了防止 Nikki+ 的策略组引用与您的自定义配置冲突而导致启动失败，同时也避免 kill switch 的直连集合与您的自定义分流不一致。</li>
+          <li><strong>恢复方法</strong>：概览页会显示红色 danger 横幅提醒功能已暂停。如需重新启用 Nikki+，只需在横幅中点击“重新优化”，Nikki+ 会将 profile 切换回内置 profile 并恢复所有功能。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="device-binding-limitations">
+        <h3 class="question"><a class="anchor" href="#device-binding-limitations">3.3 设备绑定的分流行为与注意事项有哪些？</a></h3>
+        <p>Nikki+ 的设备绑定允许您将局域网设备按 MAC 地址、单个 IP 或 CIDR 网段固定指定出口：</p>
+        <ul>
+          <li><strong>国内流量一并走代理</strong>：绑定到代理出口（特定手动节点、策略组或订阅组）的设备，其<strong>全部流量（包括访问国内网站的流量）都会强制走该出口</strong>，内置 profile 中除“对所有设备生效的规则”（如拦截 853 端口、拦截 DoH、Tailscale 直连）之外的分流规则对该设备不再生效。这是为了确保对出口 IP 要求严格的工作电脑或特定设备在目标网站看到的出口 IP 保持一致。</li>
+          <li><strong>DIRECT 绑定的开销</strong>：绑定为 DIRECT 的设备在 nikki 运行时仍会经过 mihomo 内核处理。如果该设备有大流量下载或局域网高通量传输，会消耗路由器的 CPU 算力，且其 DNS 解析仍然使用 fake-ip。</li>
+          <li><strong>完全绕过代理的做法</strong>：如果您希望某台设备（如主力下载机、局域网 NAS）彻底不经过 Nikki+ 和 mihomo，<strong>请在 luci-app-nikki 的“访问控制”（Access Control）中将该设备排除</strong>。被排除的设备流量直接由 Linux 内核转发，不经过 mihomo，也不会占用代理 CPU。</li>
+          <li><strong>访问控制的优先级</strong>：在 nikki 访问控制中排在代理规则之前被排除的设备，无论在 Nikki+ 中是否绑定了节点，都不会经过代理。</li>
+          <li><strong>策略组失效保护</strong>：如果您绑定的策略组在后续升级中不存在，该设备的出口会被自动改写为 <code>REJECT</code> 并断网，概览页会提示“请重新选择出口”，绝不会悄悄换成其它节点。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="landing-proxies-empty">
+        <h3 class="question"><a class="anchor" href="#landing-proxies-empty">3.4 为什么只有订阅没有手动落地节点时，部分服务组与规则默认拒绝连接？</a></h3>
+        <p>内置 profile 中默认设置了 7 个专属服务组（例如人工智能、奈飞视频等）以及针对部分服务的域名规则（包括 <code>landing_override</code> 规则集）。为了防止这些对出口 IP 敏感的服务（如流媒体和 AI 服务）因使用机房 IP（数据中心 IP）而触发目标网站的访问限制，它们的默认上游出口被指定为 <code>🛬 落地节点</code>。</p>
+        <p><code>🛬 落地节点</code> 组的成员包含家宽组和您手动添加的落地节点。如果您<strong>只添加了普通的订阅，没有手动添加落地节点，且订阅中也没有被识别为住宅 IP（家宽）的节点</strong>：</p>
+        <ul>
+          <li>这 7 个服务组和指向落地节点的分流规则因为成员为空，默认会处于 <code>REJECT</code> 拒绝连接状态；</li>
+          <li>概览页会显示一条 warning 横幅，提醒落地节点为空；</li>
+          <li><strong>解决方法</strong>：在“节点”页面手动添加一个落地节点；或者在“设置”页面的“进阶：为特定服务指定节点”中，将这些服务组手动切换为您可用的订阅组或地区组。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="api-secret-replacement">
+        <h3 class="question"><a class="anchor" href="#api-secret-replacement">3.5 为什么自设的 6 位数字 API 密钥会被替换？</a></h3>
+        <p>nikki 默认安装时通常生成 6 位纯数字的 API 密钥。这种短数字密钥在局域网环境下极易被枚举猜测，存在外部面板被恶意控制的安全风险。</p>
+        <p>因此在首次向导执行基线优化时，Nikki+ 会将 API 密钥（<code>api_secret</code>）统一重置为一个由 32 位十六进制字符构成的随机高强度密钥（用户之前自行设置的 6 位纯数字密钥也会被一并替换）。您可以在 Nikki+ 概览页直接查看到当前的新密钥。</p>
+      </article>
+
+      <article class="faq-item" id="subscription-unsupported-proxy">
+        <h3 class="question"><a class="anchor" href="#subscription-unsupported-proxy">3.6 订阅中只要有一个节点格式不支持，为什么会导致整个订阅失效？</a></h3>
+        <p>Nikki+ 将订阅作为 mihomo 的 <code>proxy-providers</code> 接入。mihomo 的配置解析器具有严格的格式校验要求：在加载订阅列表时，如果其中包含格式语法错误、或者包含当前 mihomo 版本无法支持的节点协议，mihomo 会拒绝加载整个 provider。</p>
+        <p>这会导致该订阅下的所有节点都无法被解析出来。如果遇到此情况，请联系您的订阅服务商修复格式，或在订阅配置中使用筛选排除不兼容的节点。</p>
+      </article>
+
+      <article class="faq-item" id="author-homelab-rules">
+        <h3 class="question"><a class="anchor" href="#author-homelab-rules">3.7 为什么公开软件包中包含部分维护者的直连域名与策略组名？</a></h3>
+        <p>Nikki+ 的内置 profile 基于一套经过长期验证的标准分流模板与规则集构建。为了保证分流规则体系的完整性、自洽性与测试基线的一致性，内置规则文件中包含维护者使用的 homelab 直连规则与特定策略组命名。这些规则命中范围仅限于特定的私有域名或特定服务，对普通公网域名的分流没有任何负面影响。</p>
+      </article>
+
+      <article class="faq-item" id="uninstall-retained-configs">
+        <h3 class="question"><a class="anchor" href="#uninstall-retained-configs">3.8 卸载 Nikki+ 后，系统还保留了哪些设置？</a></h3>
+        <p>通过 LuCI 软件包页面卸载 Nikki+ 时，卸载程序会还原由基线优化写入的 nikki 选项（如 <code>enabled</code>、<code>profile</code>、<code>api_secret</code> 等）、dhcp 的 <code>filter_aaaa</code> 选项及相关防火墙改动。但<strong>以下设置会特意予以保留</strong>：</p>
+        <ul>
+          <li><strong>网络与 DHCP 设置</strong>：旁路由模式下的静态 IP 地址、网关、关闭 DHCP/RA 的改动，以及主路由模式下屏蔽局域网 IPv6 分配的改动会被保留。这是因为在卸载没有界面和回滚保护的情况下，强行还原网段或重启 DHCP 会直接导致路由器失联或局域网出现双 DHCP 冲突。若需完整还原，请在卸载前在设置页点击“恢复到优化前的设置”。</li>
+          <li><strong>冲突软件</strong>：被向导停用的冲突软件（如 OpenClash、PassWall、ShellCrash、AdGuardHome 等），在卸载时只在 nikki 最终停用时才重新启动并恢复开机启动，避免与仍在运行的 nikki 冲突；若卸载后 nikki 仍保持运行，冲突软件保持停用。</li>
+          <li><strong>内核参数（sysctl）</strong>：旁路由的 sysctl 参数文件被保留，随路由模式一同生效；重新安装时会按保留的路由模式重新生成 sysctl 文件。</li>
+          <li><strong>配置文件数据</strong>：<code>/etc/config/nikkiplus</code> 文件会被保留在系统中，您配置的手动节点凭据与订阅链接不会丢失。若需要彻底清除隐私数据，请手动删除该文件。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="feed-probe-limitations">
+        <h3 class="question"><a class="anchor" href="#feed-probe-limitations">3.9 概览页软件包仓库可达性探测有哪些已知局限？</a></h3>
+        <p>概览页后台会定期探测软件包仓库的可达状态，并在检测到官方源或自有源不可达时向您展示 warning 警告。该检测存在以下已知特性：</p>
+        <ul>
+          <li><strong>平台限制</strong>：仅在 ImmortalWrt 25.12 (apk) 环境下进行探测与提示。OpenWrt 24.10 (opkg) 下不会进行探测；</li>
+          <li><strong>URL 规则限制</strong>：仅探测以 <code>.adb</code> 结尾且 URL 中含有 <code>nikki</code> 的源以及自有源 <code>marimario.list</code>。若源地址中包含 Shell 变量展开或不以 <code>.adb</code> 结尾，系统会跳过探测；</li>
+          <li><strong>时延与缓存</strong>：探测结果具有有效期缓存机制（成功结果缓存 10 分钟，失败缓存 30 秒）。源地址不变时，代理连接刚失效后可能最多有约 10 分钟的延迟才会显示不可达警告；新增或修改源地址后，下一次刷新概览页会立即重新探测。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="subscription-profile-bad-dns">
+        <h3 class="question"><a class="anchor" href="#subscription-profile-bad-dns">3.10 只用 nikki 加载订阅返回的完整 profile 时，为什么代理会间歇性全断？</a></h3>
+        <p>如果您没有安装 Nikki+，而是在 luci-app-nikki 中直接使用订阅返回的完整 profile，可能遇到<strong>国内网站一直正常、代理却间歇性全断</strong>的现象：节点域名解析间歇性失败，代理链路建立后传输停滞，节点延迟测试偶尔仍能通过（受 DNS 缓存影响）。</p>
+        <p><strong>原因</strong>：部分订阅返回的完整 profile 自带 <code>dns</code> 配置。实测发现其中存在两类问题：</p>
+        <ul>
+          <li><code>proxy-server-nameserver</code> 指向的 DoH 服务器<strong>探测时延正常，但实际数据面不可用</strong>。mihomo 使用它解析节点域名，解析间歇性失败，导致代理连接无法建立或建立后停滞；</li>
+          <li><code>fake-ip-range</code> 被写成 <code>28.0.0.1/8</code>，落在了<strong>公网网段</strong>（该选项应使用保留网段，如 <code>198.18.0.0/16</code>）。实测环境中 nikki 的混入配置已将它覆盖为 <code>198.18.0.0/16</code>，因此这一项通常不会造成实际影响。</li>
+        </ul>
+        <p><strong>处理办法</strong>：</p>
+        <ul>
+          <li><strong>已安装 Nikki+</strong>：不受影响。Nikki+ 将订阅作为 mihomo 的 <code>proxy-providers</code> 接入，只读取其中的节点列表，不使用订阅返回的完整 profile；路由器的 <code>dns</code> 配置由 Nikki+ 生成的内置 profile 与混入条目提供，指向可用的 DNS 服务器。</li>
+          <li><strong>纯 nikki 用户</strong>：需要在 <code>/etc/nikki/mixin.yaml</code> 中自行覆盖订阅 profile 的 <code>dns</code> 配置——将 <code>proxy-server-nameserver</code> 改为可用的 DNS 服务器（如运营商 DNS 或公共 DNS，例如 <code>223.5.5.5</code>），并确认 <code>fake-ip-range</code> 使用保留网段。修改后重启 nikki 生效。</li>
+        </ul>
+        <div class="callout info">
+          <div class="callout-title">排查提示</div>
+          <p>遇到“国内直连正常、代理全断或间歇性中断”时，如果 nikki 加载的是订阅返回的完整 profile，请先检查该 profile 中的 <code>dns</code> 配置（尤其是 <code>proxy-server-nameserver</code>），再排查节点本身。</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- 四、kill switch 与网络诊断 -->
+    <section class="category" id="cat-killswitch-diagnostics">
+      <h2 class="category-title">四、kill switch 与网络诊断</h2>
+
+      <article class="faq-item" id="kill-switch-details">
+        <h3 class="question"><a class="anchor" href="#kill-switch-details">4.1 kill switch 的放行规则与边界细节有哪些？</a></h3>
+        <p>kill switch 是代理故障或尚未启动时，只放行规则中结论为直连的流量、阻断其余转发流量的机制。它防止直连时的出口 IP 暴露，同时保证局域网与国内直连网络通畅。</p>
+        <p><strong>四层放行集合</strong>：</p>
+        <ol>
+          <li><strong>第 1 层</strong>：局域网私有地址、链路本地地址与国内 IPv4 路由集合；</li>
+          <li><strong>第 2 层</strong>：内置分流规则中明确指向 <code>DIRECT</code> 的直连 IP 目标网段；</li>
+          <li><strong>第 3 层</strong>：在 Nikki+ 中明确绑定为 <code>DIRECT</code> 出口的设备，以及在 nikki 访问控制中被排除的设备；</li>
+          <li><strong>第 4 层</strong>：通过 dnsmasq 解析境外直连域名时动态记录的 IP 地址（需 <code>dnsmasq-full</code> 支持 nftset）。</li>
+        </ol>
+        <p><strong>边界与细节说明</strong>：</p>
+        <ul>
+          <li>如果某个国内 IP 或直连域名在分流规则中排在前面的规则先送去了代理，在代理故障时根据第 1 层与第 2 层的并集判定，该 IP 仍会被 kill switch 放行；</li>
+          <li>第 4 层的域名匹配规则会放宽为同时包含该域名的子域名；</li>
+          <li>在外部面板中手动改选策略组出口后，kill switch 的集合在后台任务中最多需 24 小时完成全量同步；</li>
+          <li>代理故障期间，客户端的 DNS 查询请求会由 dnsmasq 直接转发给本地运营商的上游 DNS 进行解析；</li>
+          <li>被排除 DNS 劫持的设备，如果写死了 53 端口 DNS，在 nikki 正常运行时流量依然会被重定向至 dnsmasq；</li>
+          <li>nikki 开启 <code>bypass_china_mainland_ip</code> 时，其国内 IP 列表若与 kill switch 第 1 层不一致，差集中的 IP 会被阻断；</li>
+          <li>路由器本机发出的流量不属于转发流量，不在 kill switch 保护控制范围内；</li>
+          <li>如果您在设置页面主动打开了“代理故障时允许所有流量直连”，按 MAC 地址绑定的设备在开机 IP 尚未解析的最初几秒内发出的流量也不再被拦截。</li>
+        </ul>
+      </article>
+
+      <article class="faq-item" id="foreign-ping-rejected">
+        <h3 class="question"><a class="anchor" href="#foreign-ping-rejected">4.2 为什么局域网设备无法 ping 通 8.8.8.8 等境外 IP？</a></h3>
+        <p>部分用户习惯使用 <code>ping 8.8.8.8</code> 测试网络连通性，但在使用 Nikki+ 时该命令会收到拒绝（Reject）响应。</p>
+        <p>原因：</p>
+        <ul>
+          <li>mihomo 内核仅接管 TCP 和 UDP 协议流量，不接管 ICMP（ping）协议流量。即便代理正常运行，ping 报文也不会进入代理隧道；</li>
+          <li>对于未在访问控制中排除、也未绑定为 DIRECT 的普通设备，其发往境外的报文全部受 kill switch 控制。由于 <code>8.8.8.8</code> 属于境外 IP 地址，不在国内 IP 放行集合中，因此转发报文会被防火墙的 kill switch 规则直接拒绝（目标 IP 位于放行集合中时除外）。</li>
+        </ul>
+        <div class="callout info">
+          <div class="callout-title">测试建议</div>
+          <p>测试网络连通性时，请直接在浏览器中打开网页，或在终端中使用 <code>curl</code> 进行 HTTP/HTTPS 请求测试，不要使用 <code>ping</code> 境外地址作为判断依据。</p>
+        </div>
+      </article>
+
+      <article class="faq-item" id="github-diagnostic-export">
+        <h3 class="question"><a class="anchor" href="#github-diagnostic-export">4.3 无法打开 GitHub 时，如何导出并提交诊断信息？</a></h3>
+        <p>当您遇到网络故障需要向维护者求助，但由于当前路由器代理故障导致电脑无法直接打开 GitHub 时，请按照以下步骤导出并提交：</p>
+        <ol>
+          <li><strong>在本地导出并保存</strong>：
+            <ul>
+              <li>在浏览器中打开路由器后台，进入 <code>服务 → Nikki+</code> 概览页；</li>
+              <li>滑动到页面最下方，点击<strong>“导出诊断信息”</strong>按钮；</li>
+              <li>在弹出的预览窗口中，点击<strong>“下载 .txt”</strong>，将诊断报告文件保存到当前电脑或手机本地。</li>
+            </ul>
+          </li>
+          <li><strong>切换网络环境提交</strong>：
+            <ul>
+              <li>将电脑连接到其它可以正常上网的网络（例如打开手机的 4G/5G 个人热点并连接），或直接在手机上操作；</li>
+              <li>在浏览器中打开问题报告仓库地址：<br>
+                <a href="https://github.com/marimario-labs/openwrt-feed/issues" target="_blank" rel="noreferrer">https://github.com/marimario-labs/openwrt-feed/issues</a>
+              </li>
+              <li>点击右上角<strong>“New issue”</strong>创建新问题；</li>
+              <li>简要描述您遇到的现象，并将导出的诊断文本内容粘贴到正文中。</li>
+            </ul>
+          </li>
+          <li><strong>关于文件超长与隐私检查</strong>：
+            <ul>
+              <li><strong>超过字符限制</strong>：GitHub Issue 正文单次最大限制为 65,536 个字符。如果导出的文本超过该长度，请不要直接粘贴，改为将下载的 <code>.txt</code> 文件直接作为附件拖拽上传到 Issue 中。</li>
+              <li><strong>隐私安全提醒</strong>：GitHub Issues 是公开可见的。虽然 Nikki+ 在导出诊断信息时已经执行了严格的自动脱敏（节点的密码、私钥、UUID、订阅链接中的 Token、API 密钥均已替换为 <code>*</code>；非私有 IP 地址与 MAC 地址已替换为有序编号），<strong>在点击提交前，仍建议您检查一遍内容</strong>，确认没有遗留敏感信息。</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="callout info">
+          <div class="callout-title">沟通渠道说明</div>
+          <p>为确保问题排查过程透明且可检索，项目不提供邮件或即时通讯等私下反馈渠道，所有技术支持与故障排查均在公开的 GitHub Issues 中进行。</p>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <p>Nikki+ (luci-app-nikkiplus) &middot; <a href="https://github.com/marimario-labs/openwrt-feed/issues" target="_blank" rel="noreferrer">提交问题与反馈</a></p>
+    </footer>
+  </div>
+</body>
+</html>
