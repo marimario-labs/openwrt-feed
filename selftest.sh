@@ -13,6 +13,12 @@ trap cleanup EXIT HUP INT TERM
 git clone -q "$src" "$work/repo"
 # 克隆里是已提交版本；覆盖为当前工作区的脚本，测试未提交的修改。
 cp "$src/publish.sh" "$src/selftest.sh" "$work/repo/"
+# 从空 feed 开始（删掉真实包与 release tag），自测模拟首个项目的首次发布；
+# 否则真实包的存在使「withdraw 最后一个包」等用例永远无法触发。
+# 必须用 git -C 操作克隆；直接在这里跑 git 会改到真实仓库（已因此出过一次事故）。
+git -C "$work/repo" rm -rq public/24.10 public/25.12
+git -C "$work/repo" tag -l 'release/*' | xargs -n 1 git -C "$work/repo" tag -d >/dev/null 2>&1 || true
+git -C "$work/repo" -c user.name=selftest -c user.email=selftest@example.invalid commit -qm "selftest: empty feed"
 git init -q --bare "$work/bare.git"
 cd "$work/repo"
 git remote set-url origin "$work/bare.git"
@@ -23,6 +29,11 @@ git push -q -u origin main
 echo "== gen keys"
 ./publish.sh --gen-keys >/dev/null
 [ -f keys/marimario.sec ] && [ -f keys/marimario.sec.pem ]
+# 与真实 runbook 相同：公钥复制进 public/keys，--verify 会校验一致性。
+mkdir -p public/keys
+cp keys/marimario.pub keys/marimario.pem public/keys/
+git add public/keys
+git commit -qm "selftest: publish test keys"
 
 echo "== craft fixtures"
 # .ipk 按 SDK ipkg-build 的真实格式构造：gzip tar，成员带 ./ 前缀。
@@ -52,6 +63,11 @@ echo "== publish 24.10"
 grep -q '^Package: fake-a$' public/24.10/all/Packages
 grep -q '^Package: fake-b$' public/24.10/all/Packages
 grep -q '^SHA256sum: ' public/24.10/all/Packages
+# Size 必须在 Description 之前（opkg 把 Description 之后的行当描述续行）。
+for p in a b; do
+	grep -B1 "^Description: selftest $p\$" public/24.10/all/Packages | grep -q '^MD5Sum: ' \
+		|| { echo "UNEXPECTED: checksums not before Description for fake-$p" >&2; exit 1; }
+done
 [ "$(git -C "$work/bare.git" tag | grep -c '^release/')" -ge 1 ]
 
 echo "== tamper via publish refused"

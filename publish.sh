@@ -83,12 +83,16 @@ rebuild_index() {
 			for f in *.ipk; do
 				# SDK 的 ipkg-build 产出的 .ipk 是 gzip tar（成员带 ./ 前缀），
 				# control.tar.gz 里除 control 外还有 conffiles/postinst 等，必须只取 control。
-				tar -xzOf "$f" ./control.tar.gz | tar -xzO ./control \
-					| awk "BEGIN{RS=\"\";ORS=\"\n\n\"} {print}" >> Packages.new
+				tar -xzOf "$f" ./control.tar.gz | tar -xzO ./control > /tmp/control.tmp
+				# Filename/Size/校验和必须插在 Description 之前：Description 是 control
+				# 的最后一个字段，其后的行会被 opkg 当作描述续行吞掉（VM 208 实测）。
+				sed -n "/^Description:/q;p" /tmp/control.tmp >> Packages.new
 				printf "Filename: %s\nSize: %s\nSHA256sum: %s\nMD5Sum: %s\n" \
 					"$f" "$(wc -c < "$f" | tr -d " ")" \
 					"$(sha256sum "$f" | cut -d" " -f1)" \
 					"$(md5sum "$f" | cut -d" " -f1)" >> Packages.new
+				sed -n "/^Description:/,\$p" /tmp/control.tmp >> Packages.new
+				command rm -f /tmp/control.tmp
 				echo >> Packages.new
 			done
 			mv Packages.new Packages
